@@ -1,0 +1,19 @@
+name: 'cogBuild'
+description: 'build dir with cog'
+inputs:
+  dir:  # id of input
+    description: 'Path with cog.yaml in'
+    required: true
+    default: '.'
+  tags:
+    description: 'place to push image to'
+    required: true    
+    
+runs:
+  using: "composite"
+  steps:
+    - run: echo Building...
+      shell: bash
+    - run: cog push {{ inputs.dir }} -t {{ inputs.tags }}
+      shell: bash
+    
